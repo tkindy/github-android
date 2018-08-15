@@ -1,10 +1,14 @@
 import com.tylerkindy.github.Deps
 import com.tylerkindy.github.Versions
+import com.tylerkindy.github.PropertiesKt
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.apollographql.android'
+
+def userProperties = PropertiesKt.loadUserProperties(project)
+def oauthToken = userProperties.getProperty('oauthToken')
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -15,6 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [ oauthToken: oauthToken ]
     }
 }
 

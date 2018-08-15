@@ -10,10 +10,12 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 
-class RepoListViewModel : ViewModel() {
+class RepoListViewModel(
+        oauthToken: String
+) : ViewModel() {
 
     val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(TokenInterceptor())
+            .addInterceptor(TokenInterceptor(oauthToken))
             .build()
 
     val apolloClient = ApolloClient.builder()
@@ -31,7 +33,9 @@ class RepoListViewModel : ViewModel() {
     }
 }
 
-class TokenInterceptor : Interceptor {
+class TokenInterceptor(
+        private val oauthToken: String
+) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
 
@@ -39,7 +43,7 @@ class TokenInterceptor : Interceptor {
             chain.proceed(request)
         } else {
             val newRequest = request.newBuilder()
-                    .addHeader("Authorization", "bearer 3bdec38e170d411349bd2a52344d294a3192c7e5")
+                    .addHeader("Authorization", "bearer $oauthToken")
                     .build()
 
             chain.proceed(newRequest)

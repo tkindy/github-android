@@ -1,5 +1,6 @@
 package com.tylerkindy.github.ui.repolist
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -25,7 +26,12 @@ class RepoListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModel = RepoListViewModel()
+        val oauthToken = requireContext().packageManager.getApplicationInfo(
+                requireContext().packageName,
+                PackageManager.GET_META_DATA
+        ).metaData["oauthToken"] as String
+
+        val viewModel = RepoListViewModel(oauthToken)
         val sub = viewModel.getRepos()
                 .map { response ->
                     response.data()?.viewer()?.repositories()?.edges()?.map {
