@@ -4,6 +4,7 @@ import com.tylerkindy.github.Versions
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.apollographql.android'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -15,6 +16,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+}
+
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
@@ -29,4 +34,14 @@ dependencies {
 
     androidTestImplementation Deps.testRunner
     androidTestImplementation Deps.espresso
+
+    implementation Deps.apolloRuntime
+    implementation Deps.apolloRx
+
+    implementation Deps.rxJava
+    implementation Deps.rxKotlin
+    implementation Deps.rxAndroid
+
+    implementation Deps.groupie
+    implementation Deps.groupieKtx
 }

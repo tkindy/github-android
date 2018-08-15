@@ -1,0 +1,11 @@
+query RepositoriesQuery {
+  viewer {
+    repositories(first: 25) {
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }
+}

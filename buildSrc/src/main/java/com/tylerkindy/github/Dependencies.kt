@@ -14,6 +14,11 @@ object Versions {
     val espresso = "3.1.0-alpha4"
     val navigation = "1.0.0-alpha05"
     val recyclerView = "1.0.0-alpha1"
+    val apollo = "1.0.0-alpha2"
+    val rxJava = "2.2.0"
+    val rxKotlin = "2.3.0"
+    val rxAndroid = "2.0.2"
+    val groupie = "2.1.0"
 }
 
 object Deps {
@@ -31,4 +36,15 @@ object Deps {
     val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
 
     val junit = "junit:junit:${Versions.junit}"
+
+    val apolloGradle = "com.apollographql.apollo:apollo-gradle-plugin:${Versions.apollo}"
+    val apolloRuntime = "com.apollographql.apollo:apollo-runtime:${Versions.apollo}"
+    val apolloRx = "com.apollographql.apollo:apollo-rx2-support:${Versions.apollo}"
+
+    val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
+    val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
+    val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
+
+    val groupie = "com.xwray:groupie:${Versions.groupie}"
+    val groupieKtx = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
 }

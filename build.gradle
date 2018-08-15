@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath Deps.androidGradle
         classpath Deps.kotlinGradle
+        classpath Deps.apolloGradle
     }
 }
 
@@ -22,4 +23,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
