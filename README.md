@@ -1,4 +1,4 @@
 # GitHub Android
-## GitHub browser for Android
+### GitHub browser for Android
 
 WIP
