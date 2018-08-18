@@ -5,7 +5,7 @@ object Versions {
     val minSdk = 19
     val targetSdk = 28
 
-    val androidGradle = "3.3.0-alpha05"
+    val androidGradle = "3.3.0-alpha06"
     val kotlin = "1.2.60"
     val appCompat = "1.0.0-rc01"
     val constraintLayout = "1.1.2"
