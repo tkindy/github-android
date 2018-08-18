@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/code
+    working_directory: $HOME/code
     docker:
       - image: circleci/android:api-28-alpha
     environment:
@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Setup Environment
-          command: ./ci_setup.sh
+          command: ./.circleci/setup.sh
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum app/build.gradle }}
       - run:
