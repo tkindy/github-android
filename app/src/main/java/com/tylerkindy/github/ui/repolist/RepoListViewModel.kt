@@ -4,20 +4,18 @@ import androidx.lifecycle.ViewModel
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.rx2.Rx2Apollo
 import com.tylerkindy.github.RepositoriesQuery
-import com.tylerkindy.github.di.OauthToken
+import com.tylerkindy.github.network.TokenInterceptor
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import javax.inject.Inject
 
 class RepoListViewModel @Inject constructor(
-        oauthToken: OauthToken
+        tokenInterceptor: TokenInterceptor
 ) : ViewModel() {
 
     val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(TokenInterceptor(oauthToken.token))
+            .addInterceptor(tokenInterceptor)
             .build()
 
     val apolloClient = ApolloClient.builder()
@@ -35,20 +33,3 @@ class RepoListViewModel @Inject constructor(
     }
 }
 
-class TokenInterceptor(
-        private val oauthToken: String
-) : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val request = chain.request()
-
-        return if (request.url().host() != "api.github.com") {
-            chain.proceed(request)
-        } else {
-            val newRequest = request.newBuilder()
-                    .addHeader("Authorization", "bearer $oauthToken")
-                    .build()
-
-            chain.proceed(newRequest)
-        }
-    }
-}
