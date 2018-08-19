@@ -4,19 +4,16 @@ import androidx.lifecycle.ViewModel
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.rx2.Rx2Apollo
 import com.tylerkindy.github.RepositoriesQuery
-import com.tylerkindy.github.network.TokenInterceptor
+import com.tylerkindy.github.network.NetworkModule
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import javax.inject.Inject
+import javax.inject.Named
 
 class RepoListViewModel @Inject constructor(
-        tokenInterceptor: TokenInterceptor
+        @Named(NetworkModule.GITHUB_CLIENT) okHttpClient: OkHttpClient
 ) : ViewModel() {
-
-    val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(tokenInterceptor)
-            .build()
 
     val apolloClient = ApolloClient.builder()
             .serverUrl("https://api.github.com/graphql")
