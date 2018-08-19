@@ -11,5 +11,5 @@ touch $CHECKSUMS_FILE
 
 for file in "${FILES[@]}"
 do
-  cksum $file >> $CHECKSUMS_FILE
+  md5sum $file >> $CHECKSUMS_FILE
 done
