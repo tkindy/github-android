@@ -10,15 +10,18 @@ jobs:
       - run:
           name: Setup environment
           command: ./.circleci/setup.sh
+      - run:
+          name: Compute checksums
+          command: ./.circleci/checksum-deps.sh
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+          key: jars-{{ checksum "checksums.txt" }}
       - run:
           name: Download dependencies
           command: ./gradlew androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+          key: jars-{{ checksum "checksums.txt" }}
       - run:
           name: Run tests
           command: ./gradlew lint test
