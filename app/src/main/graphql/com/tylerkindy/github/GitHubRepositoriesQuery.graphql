@@ -1,6 +1,6 @@
 query RepositoriesQuery {
   viewer {
-    repositories {
+    repositories(first: 25) {
       edges {
         node {
           id
