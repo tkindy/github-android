@@ -3,7 +3,14 @@ query RepositoriesQuery {
     repositories(first: 25) {
       edges {
         node {
+          id
           name
+          forks {
+            totalCount
+          }
+          stargazers {
+            totalCount
+          }
         }
       }
     }
