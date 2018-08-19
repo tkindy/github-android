@@ -11,7 +11,6 @@ import com.tylerkindy.github.ui.BaseFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_repo_list.*
 
 class RepoListFragment : BaseFragment<RepoListViewModel>() {
@@ -25,13 +24,7 @@ class RepoListFragment : BaseFragment<RepoListViewModel>() {
     super.onCreate(savedInstanceState)
     viewModel = getModel()
 
-    val sub = viewModel.getRepos()
-      .map { response ->
-        response.data()?.viewer()?.repositories()?.edges()?.map {
-          RepoItem(it.node()?.name() ?: throw IllegalArgumentException("Name is null!"))
-        } ?: emptyList()
-      }
-      .observeOn(AndroidSchedulers.mainThread())
+    val sub = viewModel.getRepoItems()
       .subscribe(section::update)
 
     layoutManager = LinearLayoutManager(requireContext())
