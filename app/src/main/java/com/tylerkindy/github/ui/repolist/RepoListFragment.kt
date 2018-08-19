@@ -7,20 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tylerkindy.github.R
-import com.tylerkindy.github.di.OauthToken
 import com.tylerkindy.github.ui.BaseFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
-import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_repo_list.*
-import javax.inject.Inject
 
 class RepoListFragment : BaseFragment<RepoListViewModel>() {
-
-    @Inject
-    lateinit var oauthToken: OauthToken
 
     private val section = Section()
     private val adapter = GroupAdapter<ViewHolder>().apply { add(section) }
