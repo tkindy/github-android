@@ -32,4 +32,3 @@ class RepoListViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
     }
 }
-
