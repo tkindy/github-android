@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-abstract class BaseFragment<VM: ViewModel> : DaggerFragment() {
+abstract class BaseFragment<VM : ViewModel> : DaggerFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+  @Inject
+  lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: VM
+  lateinit var viewModel: VM
 
-    protected inline fun <reified VM : ViewModel> getModel() =
-            viewModelFactory.create(VM::class.java)
+  protected inline fun <reified VM : ViewModel> getModel() =
+    viewModelFactory.create(VM::class.java)
 }

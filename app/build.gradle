@@ -11,6 +11,8 @@ apply plugin: 'com.apollographql.android'
 def userProperties = PropertiesKt.loadUserProperties(project)
 def oauthToken = userProperties.getProperty('oauthToken')
 
+check.dependsOn ktlint
+
 android {
     compileSdkVersion Versions.compileSdk
     defaultConfig {

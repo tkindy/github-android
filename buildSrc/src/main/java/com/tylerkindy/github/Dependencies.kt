@@ -20,6 +20,7 @@ object Versions {
     val rxAndroid = "2.1.0"
     val groupie = "2.1.0"
     val dagger = "2.16"
+    val ktlint = "0.27.0"
 }
 
 object Deps {
@@ -53,4 +54,6 @@ object Deps {
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
     val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+
+    val ktlint = "com.github.shyiko:ktlint:${Versions.ktlint}"
 }

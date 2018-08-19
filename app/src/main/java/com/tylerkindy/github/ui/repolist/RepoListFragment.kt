@@ -16,36 +16,39 @@ import kotlinx.android.synthetic.main.fragment_repo_list.*
 
 class RepoListFragment : BaseFragment<RepoListViewModel>() {
 
-    private val section = Section()
-    private val adapter = GroupAdapter<ViewHolder>().apply { add(section) }
+  private val section = Section()
+  private val adapter = GroupAdapter<ViewHolder>().apply { add(section) }
 
-    private lateinit var layoutManager: RecyclerView.LayoutManager
+  private lateinit var layoutManager: RecyclerView.LayoutManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = getModel()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    viewModel = getModel()
 
-        val sub = viewModel.getRepos()
-                .map { response ->
-                    response.data()?.viewer()?.repositories()?.edges()?.map {
-                        RepoItem(it.node()?.name() ?: throw IllegalArgumentException("Name is null!"))
-                    } ?: emptyList()
-                }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(section::update)
+    val sub = viewModel.getRepos()
+      .map { response ->
+        response.data()?.viewer()?.repositories()?.edges()?.map {
+          RepoItem(it.node()?.name() ?: throw IllegalArgumentException("Name is null!"))
+        } ?: emptyList()
+      }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(section::update)
 
-        layoutManager = LinearLayoutManager(requireContext())
-    }
+    layoutManager = LinearLayoutManager(requireContext())
+  }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_repo_list, container, false)
-    }
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.fragment_repo_list, container, false)
+  }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
-        repoList.adapter = adapter
-        repoList.layoutManager = layoutManager
-    }
+    repoList.adapter = adapter
+    repoList.layoutManager = layoutManager
+  }
 }

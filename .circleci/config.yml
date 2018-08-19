@@ -23,8 +23,11 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "checksums.txt" }}
       - run:
+          name: Run checks
+          command: ./gradlew check
+      - run:
           name: Run tests
-          command: ./gradlew lint test
+          command: ./gradlew test
       - store_artifacts:
           path: app/build/reports
           destination: reports
