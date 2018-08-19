@@ -5,6 +5,7 @@ import com.tylerkindy.github.PropertiesKt
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.apollographql.android'
 
 def userProperties = PropertiesKt.loadUserProperties(project)
@@ -49,4 +50,9 @@ dependencies {
 
     implementation Deps.groupie
     implementation Deps.groupieKtx
+
+    implementation Deps.dagger
+    implementation Deps.daggerAndroidSupport
+    kapt Deps.daggerCompiler
+    kapt Deps.daggerAndroidProcessor
 }

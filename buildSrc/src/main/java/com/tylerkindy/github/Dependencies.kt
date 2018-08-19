@@ -19,6 +19,7 @@ object Versions {
     val rxKotlin = "2.3.0"
     val rxAndroid = "2.0.2"
     val groupie = "2.1.0"
+    val dagger = "2.16"
 }
 
 object Deps {
@@ -47,4 +48,9 @@ object Deps {
 
     val groupie = "com.xwray:groupie:${Versions.groupie}"
     val groupieKtx = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
+
+    val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
+    val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
 }
