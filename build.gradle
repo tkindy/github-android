@@ -1,4 +1,5 @@
 import com.tylerkindy.github.Deps
+import com.tylerkindy.github.ResolveAllDependenciesTask
 
 buildscript {
     repositories {
@@ -46,6 +47,8 @@ allprojects {
         google()
         jcenter()
     }
+
+    task resolveAllDependencies(type: ResolveAllDependenciesTask)
 }
 
 task clean(type: Delete) {
