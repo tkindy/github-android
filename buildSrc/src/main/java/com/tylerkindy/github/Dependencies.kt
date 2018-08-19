@@ -6,18 +6,18 @@ object Versions {
     val targetSdk = 28
 
     val androidGradle = "3.3.0-alpha06"
-    val kotlin = "1.2.60"
+    val kotlin = "1.2.61"
     val appCompat = "1.0.0-rc01"
     val constraintLayout = "1.1.2"
     val junit = "4.12"
     val testRunner = "1.1.0-alpha4"
     val espresso = "3.1.0-alpha4"
     val navigation = "1.0.0-alpha05"
-    val recyclerView = "1.0.0-alpha1"
+    val recyclerView = "1.0.0-rc01"
     val apollo = "1.0.0-alpha2"
     val rxJava = "2.2.0"
     val rxKotlin = "2.3.0"
-    val rxAndroid = "2.0.2"
+    val rxAndroid = "2.1.0"
     val groupie = "2.1.0"
     val dagger = "2.16"
 }
