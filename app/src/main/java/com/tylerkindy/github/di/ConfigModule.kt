@@ -8,18 +8,18 @@ import dagger.Provides
 @Module
 class ConfigModule(private val appContext: Context) {
 
-    @Provides
-    fun provideAppContext() = appContext
+  @Provides
+  fun provideAppContext() = appContext
 
-    @Provides
-    fun provideOauthToken(appContext: Context): OauthToken {
-        val token = appContext.packageManager.getApplicationInfo(
-                appContext.packageName,
-                PackageManager.GET_META_DATA
-        ).metaData["oauthToken"] as String
+  @Provides
+  fun provideOauthToken(appContext: Context): OauthToken {
+    val token = appContext.packageManager.getApplicationInfo(
+      appContext.packageName,
+      PackageManager.GET_META_DATA
+    ).metaData["oauthToken"] as String
 
-        return OauthToken(token)
-    }
+    return OauthToken(token)
+  }
 }
 
 data class OauthToken(val token: String)

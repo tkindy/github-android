@@ -21,12 +21,12 @@ import org.gradle.api.tasks.TaskAction
 
 open class ResolveAllDependenciesTask : DefaultTask() {
 
-    @TaskAction
-    fun resolve() {
-        this.project.configurations
-                .filter { it.isCanBeResolved }
-                .forEach {
-                    it.resolve()
-                }
-    }
+  @TaskAction
+  fun resolve() {
+    this.project.configurations
+      .filter { it.isCanBeResolved }
+      .forEach {
+        it.resolve()
+      }
+  }
 }

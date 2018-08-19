@@ -7,6 +7,6 @@ import dagger.Module
 @Module
 interface ViewModelModule {
 
-    @Binds
-    fun bindViewModelFactory(factory: DaggerViewModelFactory): ViewModelProvider.Factory
+  @Binds
+  fun bindViewModelFactory(factory: DaggerViewModelFactory): ViewModelProvider.Factory
 }

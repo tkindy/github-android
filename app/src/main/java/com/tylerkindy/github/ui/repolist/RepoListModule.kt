@@ -10,11 +10,11 @@ import dagger.multibindings.IntoMap
 @Module
 interface RepoListModule {
 
-    @ContributesAndroidInjector
-    fun contributeFragment(): RepoListFragment
+  @ContributesAndroidInjector
+  fun contributeFragment(): RepoListFragment
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(RepoListViewModel::class)
-    fun bindViewModel(vm: RepoListViewModel): ViewModel
+  @Binds
+  @IntoMap
+  @ViewModelKey(RepoListViewModel::class)
+  fun bindViewModel(vm: RepoListViewModel): ViewModel
 }

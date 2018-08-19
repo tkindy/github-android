@@ -7,9 +7,9 @@ import dagger.android.support.DaggerApplication
 
 class GitHubApplication : DaggerApplication() {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder()
-                .configModule(ConfigModule(applicationContext))
-                .build()
-    }
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+    return DaggerAppComponent.builder()
+      .configModule(ConfigModule(applicationContext))
+      .build()
+  }
 }
