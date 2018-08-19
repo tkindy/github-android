@@ -1,9 +1,16 @@
 query RepositoriesQuery {
   viewer {
-    repositories(first: 25) {
+    repositories {
       edges {
         node {
+          id
           name
+          forks {
+            totalCount
+          }
+          stargazers {
+            totalCount
+          }
         }
       }
     }
