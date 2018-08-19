@@ -19,7 +19,7 @@ object Versions {
     val rxKotlin = "2.3.0"
     val rxAndroid = "2.0.2"
     val groupie = "2.1.0"
-    val dagger = "2.17"
+    val dagger = "2.16"
 }
 
 object Deps {
