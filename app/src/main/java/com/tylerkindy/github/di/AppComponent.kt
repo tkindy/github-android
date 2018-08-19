@@ -9,6 +9,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     ConfigModule::class,
-    RepoListModule::class
+    RepoListModule::class,
+    ViewModelModule::class
 ])
 interface AppComponent : AndroidInjector<GitHubApplication>

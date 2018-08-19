@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tylerkindy.github.R
 import com.tylerkindy.github.di.OauthToken
+import com.tylerkindy.github.ui.BaseFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
@@ -16,7 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_repo_list.*
 import javax.inject.Inject
 
-class RepoListFragment : DaggerFragment() {
+class RepoListFragment : BaseFragment<RepoListViewModel>() {
 
     @Inject
     lateinit var oauthToken: OauthToken
@@ -28,8 +29,8 @@ class RepoListFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = getModel()
 
-        val viewModel = RepoListViewModel(oauthToken.token)
         val sub = viewModel.getRepos()
                 .map { response ->
                     response.data()?.viewer()?.repositories()?.edges()?.map {
