@@ -9,24 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tylerkindy.github.R
 import com.tylerkindy.github.ui.BaseFragment
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import io.reactivex.rxkotlin.plusAssign
 import kotlinx.android.synthetic.main.fragment_repo_list.*
 
 class RepoListFragment : BaseFragment<RepoListViewModel>() {
 
-  private val section = Section()
-  private val adapter = GroupAdapter<ViewHolder>().apply { add(section) }
+  private val adapter = GroupAdapter<ViewHolder>()
 
   private lateinit var layoutManager: RecyclerView.LayoutManager
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     viewModel = getModel()
-
-    val sub = viewModel.getRepoItems()
-      .subscribe(section::update)
-
     layoutManager = LinearLayoutManager(requireContext())
   }
 
@@ -43,5 +38,25 @@ class RepoListFragment : BaseFragment<RepoListViewModel>() {
 
     repoList.adapter = adapter
     repoList.layoutManager = layoutManager
+
+    disposables += viewModel.getRepoItems()
+      .subscribe {
+        when (it) {
+          is RepoListViewModel.Status.Loading -> showLoading()
+          is RepoListViewModel.Status.Loaded -> showLoaded(it.repoItems)
+        }
+      }
+  }
+
+  private fun showLoading() {
+    repoListLoadingGroup.visibility = View.VISIBLE
+    repoListLoadedGroup.visibility = View.GONE
+  }
+
+  private fun showLoaded(repoItems: List<RepoItem>) {
+    adapter.update(repoItems)
+
+    repoListLoadingGroup.visibility = View.GONE
+    repoListLoadedGroup.visibility = View.VISIBLE
   }
 }

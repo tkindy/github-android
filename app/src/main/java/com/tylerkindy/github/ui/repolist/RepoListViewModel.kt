@@ -14,14 +14,19 @@ class RepoListViewModel @Inject constructor(
   private val apolloClient: ApolloClient
 ) : ViewModel() {
 
-  fun getRepoItems(): Observable<List<RepoItem>> {
+  sealed class Status {
+    object Loading : Status()
+    data class Loaded(val repoItems: List<RepoItem>) : Status()
+  }
+
+  fun getRepoItems(): Observable<Status> {
     return Rx2Apollo.from(
       apolloClient.query(
         RepositoriesQuery.builder().build()
       )
     )
       .subscribeOn(Schedulers.io())
-      .map { response ->
+      .map<Status> { response ->
         if (response.hasErrors()) {
           throw GraphQLQueryException(response.errors())
         }
@@ -32,8 +37,9 @@ class RepoListViewModel @Inject constructor(
           .edges()
           ?.mapNotNull(RepositoriesQuery.Edge::node) ?: emptyList()
 
-        repos.map(::RepoItem)
+        Status.Loaded(repos.map(::RepoItem))
       }
+      .startWith(Status.Loading)
       .observeOn(AndroidSchedulers.mainThread())
   }
 }
