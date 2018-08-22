@@ -21,6 +21,7 @@ object Versions {
   val groupie = "2.1.0"
   val dagger = "2.16"
   val ktlint = "0.27.0"
+  val lifecycle = "2.0.0-beta01"
 }
 
 object Deps {
@@ -56,4 +57,7 @@ object Deps {
   val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
 
   val ktlint = "com.github.shyiko:ktlint:${Versions.ktlint}"
+
+  val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+  val lifecycleReactiveStreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.lifecycle}"
 }
