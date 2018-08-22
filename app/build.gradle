@@ -58,4 +58,7 @@ dependencies {
     implementation Deps.daggerAndroidSupport
     kapt Deps.daggerCompiler
     kapt Deps.daggerAndroidProcessor
+
+    implementation Deps.viewModel
+    implementation Deps.lifecycleReactiveStreams
 }
